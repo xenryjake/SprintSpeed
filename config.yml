@@ -1,0 +1,6 @@
+# The command you want players to type to open the SprintSpeed UI, without the preceeding slash
+ui-command-label: sprint
+
+# Configure messages the plugin sends
+messages:
+  no-permission: "&cYou don't have permission to do that."

@@ -1,0 +1,7 @@
+name: SprintSpeed
+main: com.xenry.sprintspeed.SprintSpeed
+version: 1.0
+commands:
+  sprintspeed:
+    aliases: [ss]
+    description: Manage the SprintSpeed plugin
