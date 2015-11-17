@@ -4,6 +4,9 @@ import com.xenry.sprintspeed.listeners.CommandListener;
 import com.xenry.sprintspeed.listeners.SprintListener;
 import com.xenry.sprintspeed.ui.SprintMenu;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.entity.Player;
+
+import java.util.HashMap;
 
 /**
  * SprintSpeed created by Henry Jake on November 13, 2015.
@@ -14,11 +17,13 @@ public class SprintSpeed extends JavaPlugin {
 
     private static SprintSpeed instance;
     private SprintMenu sprintMenu;
+    private HashMap<String,Integer> sprintingPlayers;
 
     public void onEnable(){
         getServer().getPluginManager().registerEvents(new SprintListener(), this);
         getServer().getPluginManager().registerEvents(new CommandListener(), this);
         sprintMenu = new SprintMenu();
+        sprintingPlayers = new HashMap<>();
         getLogger().info("SprintSpeed enabled.");
         instance = this;
     }
@@ -33,6 +38,18 @@ public class SprintSpeed extends JavaPlugin {
 
     public SprintMenu getSprintMenu(){
         return sprintMenu;
+    }
+    
+    public HashMap<String,Integer> getSprintingPlayers(){
+        return sprintingPlayers;
+    }
+    
+    public int getSprintingSpeed(Player p){
+        getSprintingSpeed(p.getName());
+    }
+    
+    public int getSprintingSpeed(String name){
+        return sprintingPlayers.contains(name) ? sprintingPlayers.get(name) ? 0;
     }
 
 }
