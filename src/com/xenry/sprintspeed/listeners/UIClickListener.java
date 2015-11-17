@@ -28,7 +28,7 @@ public class UIClickListener implements Listener {
             for(UIButton b : Lists.reverse(SprintSpeed.getInstance().getSprintMenu().getButtons())){
                 if(e.getCurrentItem().getItemMeta().getDisplayName().equals(b.getItem().getName())){
                     b.click((Player)e.getWhoClicked(), e.getClick());
-                    e.getWhoClicked().closeInventory();;
+                    e.getWhoClicked().closeInventory();
                     break;
                 }
             }
