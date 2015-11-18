@@ -21,7 +21,7 @@ public class SpeedButton extends UIButton {
     }
 
     public void click(Player p, ClickType type){
-        //
+        SprintSpeed.getInstance().setSprintSpeed(player, speed);
     }
 
 }
