@@ -51,5 +51,14 @@ public class SprintSpeed extends JavaPlugin {
     public int getSprintingSpeed(String name){
         return sprintingPlayers.containsKey(name) ? sprintingPlayers.get(name) ? 0;
     }
+    
+    public void setSprintSpeed(Player p, int speed){
+        setSprintSpeed(p.getName(), speed);
+    }
+    
+    public void setSprintSpeed(String name, int speed){
+        if(sprintingPlayers.contains(name)) sprintingPlayers.remove(name);
+        sprintingPlayers.put(name, speed);
+    }
 
 }
