@@ -53,12 +53,11 @@ public class SprintSpeed extends JavaPlugin {
     }
     
     public void setSprintSpeed(Player p, int speed){
-        setSprintSpeed(p.getName(), speed);
-    }
-    
-    public void setSprintSpeed(String name, int speed){
+        String name = p.getName();
         if(sprintingPlayers.contains(name)) sprintingPlayers.remove(name);
         sprintingPlayers.put(name, speed);
+        p.sendMessage("§6Sprint §8§l»§7 Your sprinting speed has been set to §b" + speed + "§6.");
+        // TODO Setup messages config
     }
 
 }
