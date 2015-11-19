@@ -19,12 +19,12 @@ public class Config {
     public void reload(){
         SprintSpeed.getInstance().reloadConfig();
         noPermissionString = (noPermissionString = SprintSpeed.getInstance().getConfig().getString("messages.no-permission")) == null || "".equals(noPermissionString) ? "§cYou don't have permission to do that." : ChatColor.translateAlternateColorCodes('&', noPermissionString);
-        changedSpeedString = (changedSpeedString = SprintSpeed.getInstance().getConfig().getString("messages.changed-speed")) == null || "".equals(changedSpeedStrig) ? "§6Sprint §8§l>§7 Your sprinting speed has been set to §b%speed%§7." : ChatColor.translateAlternativeColorCodes('&', changedSpeedString);
+        changedSpeedString = (changedSpeedString = SprintSpeed.getInstance().getConfig().getString("messages.changed-speed")) == null || "".equals(changedSpeedString) ? "§6Sprint §8§l>§7 Your sprinting speed has been set to §b%speed%§7." : ChatColor.translateAlternateColorCodes('&', changedSpeedString);
         uiCommandLabel = (uiCommandLabel = SprintSpeed.getInstance().getConfig().getString("ui-command-label")) == null || "".equals(uiCommandLabel) ? "sprint" : uiCommandLabel;
     }
 
     public String getNoPermissionString(){
-        return noPermissionsString;
+        return noPermissionString;
     }
 
     public String getChangedSpeedString(int speed){
