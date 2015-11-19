@@ -9,24 +9,30 @@ import net.md_5.bungee.api.ChatColor;
  * All content in this file may not be used without written consent of Henry Jake.
  */
 public class Config {
+    
+    public Config(){
+        reload();
+    }
+    
+    private String noPermissionString, changedSpeedString, uiCommandLabel;
 
     public void reload(){
         SprintSpeed.getInstance().reloadConfig();
+        noPermissionString = (noPermissionString = SprintSpeed.getInstance().getConfig().getString("messages.no-permission")) == null || "".equals(noPermissionString) ? "§cYou don't have permission to do that." : ChatColor.translateAlternateColorCodes('&', noPermissionString);
+        changedSpeedString = (changedSpeedString = SprintSpeed.getInstance().getConfig().getString("messages.changed-speed")) == null || "".equals(changedSpeedStrig) ? "§6Sprint §8§l>§7 Your sprinting speed has been set to §b%speed%§7." : ChatColor.translateAlternativeColorCodes('&', changedSpeedString);
+        uiCommandLabel = (uiCommandLabel = SprintSpeed.getInstance().getConfig().getString("ui-command-label")) == null || "".equals(uiCommandLabel) ? "sprint" : uiCommandLabel;
     }
 
     public String getNoPermissionString(){
-        String a = SprintSpeed.getInstance().getConfig().getString("messages.no-permission");
-        return a == null || "".equals(a) ? "§cYou don't have permission to do that." : ChatColor.translateAlternateColorCodes('&', a);
+        return noPermissionsString;
     }
 
     public String getChangedSpeedString(int speed){
-        String a = SprintSpeed.getInstance().getConfig().getString("messages.changed-speed");
-        return a == null || "".equals(a) ? "&6Sprint &8&l>&7 Your sprinting speed has been set to &b" + speed + "&7." : ChatColor.translateAlternateColorCodes('&', a.replace("%speed%", speed + ""));
+        return changedSpeedString.replace("%speed%", "" + speed);
     }
 
     public String getUICommandLabel(){
-        String a = SprintSpeed.getInstance().getConfig().getString("ui-command-label");
-        return a == null || "".equals(a) ? "sprint" : a;
+        return uiCommandLabel;
     }
 
 }
