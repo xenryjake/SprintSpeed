@@ -1,6 +1,5 @@
 package com.xenry.sprintspeed.ui;
 
-import com.xenry.sprintspeed.ui.item.UIItem;
 import com.xenry.sprintspeed.ui.menu.UIPage;
 
 /**
@@ -12,7 +11,11 @@ public class SprintMenu extends UIPage {
 
     public SprintMenu(){
         super("Sprint Speed", 1);
-        addItem(new );
+        addItem(new SpeedButton(1), 2);
+        addItem(new SpeedButton(2), 3);
+        addItem(new SpeedButton(3), 4);
+        addItem(new SpeedButton(4), 5);
+        addItem(new SpeedButton(5), 6);
     }
 
 }

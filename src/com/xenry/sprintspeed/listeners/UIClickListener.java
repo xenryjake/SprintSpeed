@@ -3,7 +3,6 @@ package com.xenry.sprintspeed.listeners;
 import com.google.common.collect.Lists;
 import com.xenry.sprintspeed.SprintSpeed;
 import com.xenry.sprintspeed.ui.item.UIButton;
-import com.xenry.sprintspeed.ui.menu.UIPage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

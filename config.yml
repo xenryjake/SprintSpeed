@@ -4,3 +4,6 @@ ui-command-label: sprint
 # Configure messages the plugin sends
 messages:
   no-permission: "&cYou don't have permission to do that."
+
+  # %speed% = sprinting speed
+  changed-speed: "&6Sprint &8&l>&7 Your sprinting speed has been set to &b%speed%&7."

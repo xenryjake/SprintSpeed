@@ -1,5 +1,6 @@
 package com.xenry.sprintspeed.listeners;
 
+import com.xenry.sprintspeed.SprintSpeed;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -32,12 +33,28 @@ public class CommandListener implements Listener {
                 return;
             }
             if(!p.hasPermission("sprintspeed.reload")) {
-                p.sendMessage("§cYou are not permitted to do that.");
+                p.sendMessage(SprintSpeed.getInstance().config().getNoPermissionString());
                 return;
             }
+            SprintSpeed.getInstance().config().reload();
+            p.sendMessage("§aConfig reloaded.");
         }
-        // TODO get label from config
-        if(label.equalsIgnoreCase("sprint")){
+        if(label.equalsIgnoreCase(SprintSpeed.getInstance().config().getUICommandLabel())){
+            if(args.length < 1){
+                SprintSpeed.getInstance().getSprintMenu().open(p);
+                return;
+            }
+            String s = args[0];
+            int a;
+            try{
+                a = Integer.parseInt(s);
+            }catch(Exception ex){
+                SprintSpeed.getInstance().getSprintMenu().open(p);
+                return;
+            }
+            if(a > 0 && a < 6)
+                SprintSpeed.getInstance().setSprintSpeed(p,a);
+            else SprintSpeed.getInstance().getSprintMenu().open(p);
         }
     }
 

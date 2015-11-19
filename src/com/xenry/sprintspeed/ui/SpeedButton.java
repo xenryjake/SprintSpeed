@@ -1,5 +1,6 @@
 package com.xenry.sprintspeed.ui;
 
+import com.xenry.sprintspeed.SprintSpeed;
 import com.xenry.sprintspeed.ui.item.UIButton;
 import com.xenry.sprintspeed.ui.item.UIItemStack;
 import org.bukkit.Material;
@@ -21,7 +22,7 @@ public class SpeedButton extends UIButton {
     }
 
     public void click(Player p, ClickType type){
-        SprintSpeed.getInstance().setSprintSpeed(player, speed);
+        SprintSpeed.getInstance().setSprintSpeed(p, speed);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.xenry.sprintspeed;
 
+import com.xenry.sprintspeed.config.Config;
 import com.xenry.sprintspeed.listeners.CommandListener;
 import com.xenry.sprintspeed.listeners.SprintListener;
 import com.xenry.sprintspeed.ui.SprintMenu;
@@ -17,12 +18,14 @@ public class SprintSpeed extends JavaPlugin {
 
     private static SprintSpeed instance;
     private SprintMenu sprintMenu;
+    private Config config;
     private HashMap<String,Integer> sprintingPlayers;
 
     public void onEnable(){
         getServer().getPluginManager().registerEvents(new SprintListener(), this);
         getServer().getPluginManager().registerEvents(new CommandListener(), this);
         sprintMenu = new SprintMenu();
+        config = new Config();
         sprintingPlayers = new HashMap<>();
         getLogger().info("SprintSpeed enabled.");
         instance = this;
@@ -39,25 +42,32 @@ public class SprintSpeed extends JavaPlugin {
     public SprintMenu getSprintMenu(){
         return sprintMenu;
     }
+
+    public Config config(){
+        return config;
+    }
     
     public HashMap<String,Integer> getSprintingPlayers(){
         return sprintingPlayers;
     }
     
     public int getSprintingSpeed(Player p){
-        getSprintingSpeed(p.getName());
+        return getSprintingSpeed(p.getName());
     }
     
     public int getSprintingSpeed(String name){
-        return sprintingPlayers.containsKey(name) ? sprintingPlayers.get(name) ? 0;
+        return sprintingPlayers.containsKey(name) ? sprintingPlayers.get(name) : 1;
     }
     
     public void setSprintSpeed(Player p, int speed){
+        if(!p.hasPermission("sprintspeed.speed." + speed)) {
+            p.sendMessage(config().getNoPermissionString());
+            return;
+        }
         String name = p.getName();
-        if(sprintingPlayers.contains(name)) sprintingPlayers.remove(name);
+        if(sprintingPlayers.containsKey(name)) sprintingPlayers.remove(name);
         sprintingPlayers.put(name, speed);
-        p.sendMessage("§6Sprint §8§l»§7 Your sprinting speed has been set to §b" + speed + "§6.");
-        // TODO Setup messages config
+        p.sendMessage(config().getChangedSpeedString(speed));
     }
 
 }

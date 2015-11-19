@@ -1,5 +1,7 @@
 package com.xenry.sprintspeed.listeners;
 
+import com.xenry.sprintspeed.SprintSpeed;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleSprintEvent;
@@ -13,7 +15,11 @@ public class SprintListener implements Listener {
 
     @EventHandler
     public void on(PlayerToggleSprintEvent e){
-        //
+        if(e.isCancelled()) return;
+        Player p = e.getPlayer();
+        if(e.isSprinting())
+            p.setWalkSpeed((float)SprintSpeed.getInstance().getSprintingSpeed(p)/5F);
+        else p.setWalkSpeed(0.1F);
     }
 
 }
