@@ -9,11 +9,11 @@ import net.md_5.bungee.api.ChatColor;
  * All content in this file may not be used without written consent of Henry Jake.
  */
 public class Config {
-    
+
     public Config(){
         reload();
     }
-    
+
     private String noPermissionString, changedSpeedString, uiCommandLabel;
 
     public void reload(){
