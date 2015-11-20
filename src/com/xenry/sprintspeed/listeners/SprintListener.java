@@ -19,7 +19,7 @@ public class SprintListener implements Listener {
         Player p = e.getPlayer();
         if(e.isSprinting())
             p.setWalkSpeed((float)SprintSpeed.getInstance().getSprintingSpeed(p)/5F);
-        else p.setWalkSpeed(0.1F);
+        else p.setWalkSpeed(0.2F);
     }
 
 }

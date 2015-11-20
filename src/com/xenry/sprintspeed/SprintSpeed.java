@@ -3,6 +3,7 @@ package com.xenry.sprintspeed;
 import com.xenry.sprintspeed.config.Config;
 import com.xenry.sprintspeed.listeners.CommandListener;
 import com.xenry.sprintspeed.listeners.SprintListener;
+import com.xenry.sprintspeed.listeners.UIClickListener;
 import com.xenry.sprintspeed.ui.SprintMenu;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Player;
@@ -22,13 +23,15 @@ public class SprintSpeed extends JavaPlugin {
     private HashMap<String,Integer> sprintingPlayers;
 
     public void onEnable(){
+        saveDefaultConfig();
+        instance = this;
         getServer().getPluginManager().registerEvents(new SprintListener(), this);
         getServer().getPluginManager().registerEvents(new CommandListener(), this);
+        getServer().getPluginManager().registerEvents(new UIClickListener(), this);
         sprintMenu = new SprintMenu();
         config = new Config();
         sprintingPlayers = new HashMap<>();
         getLogger().info("SprintSpeed enabled.");
-        instance = this;
     }
 
     public void onDisable(){

@@ -40,6 +40,7 @@ public class CommandListener implements Listener {
             p.sendMessage("§aConfig reloaded.");
         }
         if(label.equalsIgnoreCase(SprintSpeed.getInstance().config().getUICommandLabel())){
+            e.setCancelled(true);
             if(args.length < 1){
                 SprintSpeed.getInstance().getSprintMenu().open(p);
                 return;
