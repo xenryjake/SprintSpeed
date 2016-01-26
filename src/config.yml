@@ -1,9 +1,27 @@
-# The command you want players to type to open the SprintSpeed UI, without the preceeding slash
-ui-command-label: sprint
+# The default sprinting speed for all users
+# This option overrides the sprintspeed.speed.# permission
+default-sprint-speed: 1
+
+# Configuration of the UI
+ui:
+  # The command you want players to type to open the UI, without the preceeding slash
+  command-label: sprint
+
+  # The title of the UI menu displayed in-game
+  title: "Sprint Speed »"
+
+  # The name of each sprint item / button displayed in the UI menu
+  # %speed% = speed level
+  button-name: "§b§lSprint Speed %speed%"
+
+  # The minecraft material of the UI button
+  # A list of valid values can be found at:
+  #   https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+  button-material: FEATHER
 
 # Configure messages the plugin sends
 messages:
   no-permission: "&cYou don't have permission to do that."
 
-  # %speed% = sprinting speed
+  # %speed% = speed level
   changed-speed: "&6Sprint &8&l>&7 Your sprinting speed has been set to &b%speed%&7."

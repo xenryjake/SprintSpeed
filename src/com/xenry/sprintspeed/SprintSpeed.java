@@ -23,15 +23,17 @@ public class SprintSpeed extends JavaPlugin {
     private HashMap<String,Integer> sprintingPlayers;
 
     public void onEnable(){
+        long start = System.currentTimeMillis();
         saveDefaultConfig();
         instance = this;
         getServer().getPluginManager().registerEvents(new SprintListener(), this);
         getServer().getPluginManager().registerEvents(new CommandListener(), this);
         getServer().getPluginManager().registerEvents(new UIClickListener(), this);
-        sprintMenu = new SprintMenu();
-        config = new Config();
+        sprintMenu = new SprintMenu(this);
+        config = new Config(this);
         sprintingPlayers = new HashMap<>();
-        getLogger().info("SprintSpeed enabled.");
+        getLogger().info(getDescription().getName() + " v" + getDescription().getVersion() + " enabled.");
+        getLogger().info("Took " + (System.currentTimeMillis() - start) + "ms");
     }
 
     public void onDisable(){
@@ -55,11 +57,11 @@ public class SprintSpeed extends JavaPlugin {
     }
     
     public int getSprintingSpeed(Player p){
-        return getSprintingSpeed(p.getName());
+        return getSprintingSpeed(p.getUniqueId().toString());
     }
-    
-    public int getSprintingSpeed(String name){
-        return sprintingPlayers.containsKey(name) ? sprintingPlayers.get(name) : 1;
+
+    public int getSprintingSpeed(String uuid){
+        return sprintingPlayers.containsKey(uuid) ? sprintingPlayers.get(uuid) : config.getDefaultSpeed();
     }
     
     public void setSprintSpeed(Player p, int speed){
@@ -67,9 +69,9 @@ public class SprintSpeed extends JavaPlugin {
             p.sendMessage(config().getNoPermissionString());
             return;
         }
-        String name = p.getName();
-        if(sprintingPlayers.containsKey(name)) sprintingPlayers.remove(name);
-        sprintingPlayers.put(name, speed);
+        String uuid = p.getUniqueId().toString();
+        if(sprintingPlayers.containsKey(uuid)) sprintingPlayers.remove(uuid);
+        sprintingPlayers.put(uuid, speed);
         p.sendMessage(config().getChangedSpeedString(speed));
     }
 

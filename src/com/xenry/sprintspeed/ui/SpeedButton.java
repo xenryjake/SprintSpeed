@@ -17,8 +17,8 @@ public class SpeedButton extends UIButton {
     private int speed;
 
     public SpeedButton(int speed){
-        super(new UIItemStack(Material.FEATHER, 1, "§b§lSprint Speed " + speed));
-        this.speed=speed;
+        super(new UIItemStack(SprintSpeed.getInstance().config().getButtonMaterial(), 1, SprintSpeed.getInstance().config().getUIButtonName().replace("%speed%", String.valueOf(speed))));
+        this.speed = speed;
     }
 
     public void click(Player p, ClickType type){

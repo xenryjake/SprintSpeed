@@ -26,7 +26,7 @@ public class UIPage {
     }
 
     public UIPage(String name, int rows, HashMap<UIItem, Integer> items){
-        this.name=name + " »";
+        this.name=name;
         this.rows=rows;
         this.items=items;
     }
