@@ -32,13 +32,15 @@ public class CommandListener implements Listener {
             e.setCancelled(true);
             if(args.length < 1){
                 p.sendMessage("§e§lSprintSpeed §6by Xenry.");
+                if(p.hasPermission("sprintspeed.reload"))
+                    p.sendMessage("§7» §b/sprintspeed reload");
                 return;
             }
             if(!p.hasPermission("sprintspeed.reload")) {
                 p.sendMessage(SprintSpeed.getInstance().config().getNoPermissionString());
                 return;
             }
-            SprintSpeed.getInstance().config().reload();
+            SprintSpeed.getInstance().reload();
             p.sendMessage("§aConfig reloaded.");
         }
         if(label.equalsIgnoreCase(SprintSpeed.getInstance().config().getUICommandLabel())){
@@ -65,7 +67,7 @@ public class CommandListener implements Listener {
     )
     public void on(ServerCommandEvent e){
         CommandSender s = e.getSender();
-        String[] split = e.getCommand().substring(1).split(" ");
+        String[] split = e.getCommand().split(" ");
         if(split.length < 1) return;
         String label = split[0];
         String[] args = new String[split.length-1];

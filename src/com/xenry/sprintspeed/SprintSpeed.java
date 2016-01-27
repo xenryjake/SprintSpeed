@@ -26,11 +26,11 @@ public class SprintSpeed extends JavaPlugin {
         long start = System.currentTimeMillis();
         saveDefaultConfig();
         instance = this;
+        config = new Config(this);
         getServer().getPluginManager().registerEvents(new SprintListener(), this);
         getServer().getPluginManager().registerEvents(new CommandListener(), this);
         getServer().getPluginManager().registerEvents(new UIClickListener(), this);
         sprintMenu = new SprintMenu(this);
-        config = new Config(this);
         sprintingPlayers = new HashMap<>();
         getLogger().info(getDescription().getName() + " v" + getDescription().getVersion() + " enabled.");
         getLogger().info("Took " + (System.currentTimeMillis() - start) + "ms");
@@ -73,6 +73,11 @@ public class SprintSpeed extends JavaPlugin {
         if(sprintingPlayers.containsKey(uuid)) sprintingPlayers.remove(uuid);
         sprintingPlayers.put(uuid, speed);
         p.sendMessage(config().getChangedSpeedString(speed));
+    }
+
+    public void reload(){
+        config.reload();
+        sprintMenu = new SprintMenu(this);
     }
 
 }
